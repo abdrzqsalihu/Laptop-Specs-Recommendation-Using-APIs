@@ -34,10 +34,11 @@
 
             data.recommendations.forEach(item => {
                 // Do something with each item
-
+                imageUrl = item.images[0].url;
+                // console.log(imageUrl);
                 const markup = `
                     <div class="col l3 m4 s12">
-                        <img style="width: 100%;" src="${item.images}" alt="">
+                        <img style="width: 100%;" src="${imageUrl}" alt="">
                         <h5 style="font-weight:bold">${item.name}</h5>
                         <p style="font-weight:500">${item.info}</p>
                         <br/><br/><br/><br/></div>
