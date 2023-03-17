@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="materialize/css/materialize.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Header -->
+
+    <nav>
+        <ul>
+            <li><a href="">Salesman</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="container">
+        <div class="row">
+            <div class="col s12 l2 m2">
+
+            </div>
+            <div class="col s12 l10 m10">
+                <div class="row" id="data">
+                    <div class="col s12 m4 l4">
+
+                    </div>
+                    <div class="col s12 m4 l4">
+
+                    </div>
+                    <div class="col s12 m4 l4">
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+
+    <script>
+       function fetchData() {
+            const url = `https://5000-mcsavvy-hackathon-qc17tz4ggwh.ws-eu90.gitpod.io/search/lenovo`;
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json'
+                },
+            }).then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(data => {
+
+                console.log(data);
+                document.getElementById('data').innerHTML = '';
+                data.forEach(recommendations => {
+
+                    const markup = `
+                        <img style="width: 100%;" src="${recommendations.images}" alt="">
+                    `;
+                    document.getElementById('data').insertAdjacentHTML('beforeend', markup);
+                });
+                
+            }).catch(error => {
+
+                console.log(error);
+            });
+        }
+
+        fetchData();
+    </script>
+
+</body>
+</html>
